@@ -17,6 +17,18 @@
   <!-- Menu Section -->
   <section id="menu-section"></section>
 
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="cart-modal" style="display:none;">
+    <div class="cart-content">
+      <span onclick="closeCartModal()" class="close-button">&times;</span>
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <p id="total-amount"></p>
+      <button onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+  <button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>
+
   <script src="script.js"></script>
 </body>
 </html>
