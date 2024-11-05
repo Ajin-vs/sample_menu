@@ -230,6 +230,26 @@ function closeCartModal() {
 function checkout() {
   alert("Checkout is not implemented yet.");
 }
+// Your existing JavaScript code...
+    
+let lastScrollTop = 0; // Variable to track the last scroll position
+const categoryNav = document.querySelector('.category-nav'); // Select the navigation element
 
+window.addEventListener('scroll', function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop; // Get the current scroll position
+    
+    if (currentScroll > lastScrollTop) {
+        // Scrolling down, hide the navigation
+        categoryNav.style.top = '0'; // Adjust this value based on the height of your nav
+        categoryNav.style.position = 'fixed'
+
+    } else {
+        // Scrolling up, show the navigation
+        categoryNav.style.top = '-60px'; // Reset to its original position at the top
+        categoryNav.style.position = 'sticky'
+    }
+    
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Update last scroll position
+});
 // Load menu on page load
 document.addEventListener("DOMContentLoaded", loadMenu);
