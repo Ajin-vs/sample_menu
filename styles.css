@@ -168,18 +168,7 @@ body {
     justify-content: space-between;
     margin-bottom: 10px;
   }
-  
-  .view-cart-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #ff5722;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+
   .cart-modal {
     position: fixed;
     top: 0;
@@ -207,13 +196,117 @@ body {
   
   .view-cart-button {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    left: 50%; /* Centers horizontally */
+    transform: translateX(-50%); /* Adjusts the element back to center */
     padding: 10px 20px;
     background-color: #ff5722;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-    
+    width: 70%;
+}
+
+.cart-p {
+    text-align: center;
+}
+.menu-select {
+  margin-bottom: 56px;
+}
+
+.add-cart {
+  background-color: #ff5722; /* Bright and eye-catching color */
+  color: white;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8.5rem;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-cart:hover {
+  background-color: #e64a19; /* Darker shade on hover */
+  transform: scale(0.99); /* Slight zoom effect */
+  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); Deeper shadow */
+}
+
+.add-cart:active {
+  background-color: #d84315; /* Even darker shade on click */
+  transform: scale(0.98); /* Pressed down effect */
+}
+
+.cart-info-left, .cart-info-right {
+  font-size: 0.9rem;
+}
+
+.cart-info-left {
+  margin-right: 10px; /* Aligns to the left */
+  font-weight: bold;
+}
+
+.cart-info-right {
+  margin-left: 10px; /* Aligns to the right */
+  font-weight: bold;
+}
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  margin: 0; /* Remove margin to prevent overlap with header */
+  background-color: #fff; /* Background for nav */
+  padding: 10px 0;
+  position: fixed; /* Make the nav fixed */
+  top: 60px; /* Adjust this to place it below the header (adjust based on header height) */
+  left: 0; /* Align it to the left */
+  width: 100%; /* Full width of the viewport */
+  z-index: 999; /* Ensure it's above other content */
+}
+
+.category-link {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #007bff; /* Blue color for links */
+  font-weight: bold;
+}
+
+.category-link:hover {
+  text-decoration: underline; /* Change to underline on hover */
+}
+
+.menu-select {
+  padding: 80px 20px; /* Add more padding to avoid overlap with fixed header and nav */
+}
+
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  margin: 0; /* Remove margin to prevent overlap with header */
+  background-color: #fff; /* Background for nav */
+  padding: 10px 0;
+  position: fixed; /* Make the nav fixed */
+  top: 0; /* Start at the top of the page */
+  left: 0; /* Align it to the left */
+  width: 100%; /* Full width of the viewport */
+  z-index: 999; /* Ensure it's above other content */
+  transition: top 0.3s; /* Smooth transition for the top position */
+}
+
+.menu-select {
+  padding: 80px 20px; /* Add more padding to avoid overlap with fixed header and nav */
+}
+
+.category-link {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #007bff; /* Blue color for links */
+  font-weight: bold;
+}
+
+.category-link:hover {
+  text-decoration: underline; /* Change to underline on hover */
+}
