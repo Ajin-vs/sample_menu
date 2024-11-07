@@ -95,7 +95,7 @@ const menuData = [
       }
     ]
   },
-  
+
   // Add more categories as needed
 ];
 let cart = [];  // Cart array to hold items
@@ -114,7 +114,22 @@ function loadMenu() {
     categoryLink.classList.add('category-link');
     categoryLink.addEventListener('click', (e) => {
       e.preventDefault(); // Prevent default anchor behavior
-      document.getElementById(categoryId).scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the category
+      document.querySelectorAll('.category-link').forEach(link => {
+        link.classList.remove('active-link');
+      });
+
+      // Add 'active-link' class to the clicked link
+      categoryLink.classList.add('active-link');
+
+      const categoryHeader = document.getElementById(categoryId);
+
+      const offset = categoryNav.offsetHeight; // Get the height of the navbar
+
+      window.scrollTo({
+        top: categoryHeader.offsetTop - offset, // Scroll with offset
+        behavior: 'smooth'
+      });
+      // document.getElementById(categoryId).scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the category
     });
 
     // Append category link to navigation
@@ -140,6 +155,7 @@ function loadMenu() {
         `;
       menuSection.appendChild(menuItem);
     });
+
   });
 
   // Create the View Cart button
@@ -180,10 +196,14 @@ function updateCart() {
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart-item");
     cartItem.innerHTML = `
+      <div>
         <span>${item.name} - ₹${item.price} x ${item.quantity}</span>
+      </div>
+      <div class="buttons-container">
         <button onclick="changeQuantity('${item.name}', 1)">+</button>
         <button onclick="changeQuantity('${item.name}', -1)">-</button>
-      `;
+      </div>
+    `;
     cartItems.appendChild(cartItem);
   });
   const totalItems = cart.length;
@@ -219,7 +239,7 @@ function changeQuantity(name, delta) {
 
 // Open and close cart modal
 function openCartModal() {
-  document.getElementById("cart-modal").style.display = "block";
+  document.getElementById("cart-modal").style.display = "flex";
 }
 
 function closeCartModal() {
@@ -231,25 +251,25 @@ function checkout() {
   alert("Checkout is not implemented yet.");
 }
 // Your existing JavaScript code...
-    
-let lastScrollTop = 0; // Variable to track the last scroll position
-const categoryNav = document.querySelector('.category-nav'); // Select the navigation element
 
-window.addEventListener('scroll', function() {
-    let currentScroll = window.pageYOffset || document.documentElement.scrollTop; // Get the current scroll position
-    
-    if (currentScroll > lastScrollTop) {
-        // Scrolling down, hide the navigation
-        categoryNav.style.top = '0'; // Adjust this value based on the height of your nav
-        categoryNav.style.position = 'fixed'
+// let lastScrollTop = 0; // Variable to track the last scroll position
+// const categoryNav = document.querySelector('.category-nav'); // Select the navigation element
 
-    } else {
-        // Scrolling up, show the navigation
-        categoryNav.style.top = '-60px'; // Reset to its original position at the top
-        categoryNav.style.position = 'sticky'
-    }
-    
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Update last scroll position
-});
+// window.addEventListener('scroll', function() {
+//     let currentScroll = window.pageYOffset || document.documentElement.scrollTop; // Get the current scroll position
+
+//     if (currentScroll > lastScrollTop) {
+//         // Scrolling down, hide the navigation
+//         categoryNav.style.top = '0'; // Adjust this value based on the height of your nav
+//         categoryNav.style.position = 'fixed'
+
+//     } else {
+//         // Scrolling up, show the navigation
+//         categoryNav.style.top = '-60px'; // Reset to its original position at the top
+//         categoryNav.style.position = 'sticky'
+//     }
+
+//     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Update last scroll position
+// });
 // Load menu on page load
 document.addEventListener("DOMContentLoaded", loadMenu);

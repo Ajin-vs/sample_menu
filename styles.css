@@ -1,237 +1,234 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-  }
-  
-  header {
-    text-align: center;
-    background-color: #ff5722;
-    color: white;
-    padding: 20px;
-  }
-  /* Header Styles */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+/* Header Styles */
+header {
+  text-align: center;
+  background-color: #ff5722;
+  color: white;
+  padding: 20px;
+}
+
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #ff5722;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  .logo {
-    width: 100px;
-    height: auto;
-    margin-right: 20px;
-  }
-  
-  .restaurant-name {
-    font-size: 2em;
-    font-weight: bold;
-    color: #333;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ff5722;
+}
 
-  
-  .menu-section {
-    padding: 20px;
-  }
-  
-  .category-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.8rem;
-    color: #333;
-    margin: 20px 0 10px;
-    border-bottom: 2px solid #ff5722;
-    padding-bottom: 5px;
-  }
-  
-  .collapse-button {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  
+.logo {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.restaurant-name {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Menu Section Styles */
+.menu-section {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin: 20px 0 10px;
+  border-bottom: 2px solid #ff5722;
+  padding-bottom: 5px;
+}
+
+.collapse-button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.menu-item:hover {
+  transform: scale(1.02);
+}
+
+/* Image on the Left */
+.menu-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.menu-content {
+  flex: 1;
+}
+
+.menu-title {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+.menu-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+.menu-price {
+  color: #ff5722;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .menu-item {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-    padding: 10px;
-    transition: transform 0.2s;
+    flex-direction: row;
+    text-align: left;
   }
-  
-  .menu-item:hover {
-    transform: scale(1.02);
-  }
-  
-  /* Image on the Left */
+
   .menu-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 15px;
-    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
   }
-  
-  .menu-content {
-    flex: 1;
-  }
-  
-  .menu-title {
-    font-size: 1.2rem;
-    margin: 0;
-    color: #333;
-  }
-  
-  .menu-description {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 5px 0;
-  }
-  
-  .menu-price {
-    color: #ff5722;
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .menu-item {
-      flex-direction: row;
-      text-align: left;
-    }
-    .menu-image {
-      width: 80px;
-      height: 80px;
-      margin-right: 10px;
-    }
-  }
-  .collapse-button {
-    background: none;
-    border: none;
-    font-size: 1em;
-    cursor: pointer;
-    margin-left: 10px;
-    color: #ff5722;
-  }
-  .category-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  .cart-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cart-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    position: relative;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
+}
+.cart-modal {
+  display: none; /* Hide modal initially */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 
-  .cart-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cart-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
-  }
-  
-  .close-button {
-    cursor: pointer;
-    font-size: 1.5rem;
-  }
-  
-  .view-cart-button {
-    position: fixed;
-    bottom: 10px;
-    left: 50%; /* Centers horizontally */
-    transform: translateX(-50%); /* Adjusts the element back to center */
-    padding: 10px 20px;
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 70%;
 }
 
+
+
+
+.cart-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e64a19;
+}
+
+.close-button {
+  /* position: absolute; */
+  top: 10px;
+  right: 0;
+  float: right;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* View Cart Button */
+.view-cart-button {
+  position: fixed;
+  bottom: 10px;
+  left: 50%; /* Centers horizontally */
+  transform: translateX(-50%); /* Adjusts the element back to center */
+  padding: 10px 20px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 70%;
+}
+
+/* Cart Item Styles */
+.cart-item {
+  display: flex;
+  flex-direction: column; /* This makes the cart item stack vertically */
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row; /* Stack buttons vertically */
+  align-items: center; /* Center-align buttons horizontally */
+
+}
+
+button {
+  /* display: block; Make each button take up full width */
+  margin: 5px 5px; /* Add space between buttons */
+  padding: 5px 9px;
+  /* Add padding for better appearance */
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #e64a19;
+}
+
+button:active {
+  background-color: #d84315;
+}
 .cart-p {
-    text-align: center;
-}
-.menu-select {
-  margin-bottom: 56px;
+  text-align: center;
 }
 
+/* Add to Cart Button Styles */
 .add-cart {
   background-color: #ff5722; /* Bright and eye-catching color */
   color: white;
-  padding: 5px 5px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 0.8.5rem;
+  font-size: 0.85rem;
   transition: background-color 0.3s, transform 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  float: right;
 }
 
 .add-cart:hover {
   background-color: #e64a19; /* Darker shade on hover */
-  transform: scale(0.99); /* Slight zoom effect */
-  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); Deeper shadow */
+  transform: scale(0.99);
 }
 
 .add-cart:active {
@@ -239,6 +236,7 @@ body {
   transform: scale(0.98); /* Pressed down effect */
 }
 
+/* Cart Info Styles */
 .cart-info-left, .cart-info-right {
   font-size: 0.9rem;
 }
@@ -253,60 +251,47 @@ body {
   font-weight: bold;
 }
 
+/* Category Navigation Styles */
 .category-nav {
-  display: flex;
-  justify-content: center;
-  margin: 0; /* Remove margin to prevent overlap with header */
-  background-color: #fff; /* Background for nav */
+  display: grid;
+  grid-auto-flow: column;
+  margin: 0;
+  background-color: #efe8e8;
   padding: 10px 0;
-  position: fixed; /* Make the nav fixed */
-  top: 60px; /* Adjust this to place it below the header (adjust based on header height) */
-  left: 0; /* Align it to the left */
-  width: 100%; /* Full width of the viewport */
-  z-index: 999; /* Ensure it's above other content */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transition: top 0.3s;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 17px;
 }
 
-.category-link {
-  margin: 0 20px;
-  text-decoration: none;
-  color: #007bff; /* Blue color for links */
-  font-weight: bold;
-}
-
-.category-link:hover {
-  text-decoration: underline; /* Change to underline on hover */
+.category-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .menu-select {
-  padding: 80px 20px; /* Add more padding to avoid overlap with fixed header and nav */
-}
-
-
-.category-nav {
-  display: flex;
-  justify-content: center;
-  margin: 0; /* Remove margin to prevent overlap with header */
-  background-color: #fff; /* Background for nav */
-  padding: 10px 0;
-  position: fixed; /* Make the nav fixed */
-  top: 0; /* Start at the top of the page */
-  left: 0; /* Align it to the left */
-  width: 100%; /* Full width of the viewport */
-  z-index: 999; /* Ensure it's above other content */
-  transition: top 0.3s; /* Smooth transition for the top position */
-}
-
-.menu-select {
-  padding: 80px 20px; /* Add more padding to avoid overlap with fixed header and nav */
+  padding: 80px 20px; /* Added padding to avoid overlap with fixed header and nav */
 }
 
 .category-link {
-  margin: 0 20px;
+  margin: 17px 20px;
   text-decoration: none;
-  color: #007bff; /* Blue color for links */
+  color: black;
   font-weight: bold;
 }
 
+.category-link.active-link {
+  color: #d84315;
+}
+
 .category-link:hover {
-  text-decoration: underline; /* Change to underline on hover */
+  color: #d84315;
+}
+
+#total-amount {
+  font-weight: bold;
 }
