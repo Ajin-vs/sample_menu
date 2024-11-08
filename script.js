@@ -53,119 +53,211 @@
 //     }
 //   ];
 const menuData = [
-  // Sample data
   {
     category: "Starters",
     items: [
       { name: "Spring Rolls", description: "Crispy vegetable rolls.", price: 120, imageUrl: "rolls.jpg" },
-      { name: "Paneer Tikka", description: "Grilled paneer with spices.", price: 180, imageUrl: "rolls.jpg" }
+      { name: "Paneer Tikka", description: "Grilled paneer with spices.", price: 180, imageUrl: "rolls.jpg" },
+      { name: "Stuffed Mushrooms", description: "Mushrooms filled with cheese and herbs.", price: 150, imageUrl: "rolls.jpg" },
+      { name: "Garlic Bread", description: "Toasted bread with garlic butter.", price: 90, imageUrl: "rolls.jpg" },
+      { name: "Chicken Wings", description: "Spicy and crispy wings.", price: 200, imageUrl: "rolls.jpg" }
     ]
   },
   {
     category: "Main Course",
     items: [
-      {
-        name: "Margherita Pizza",
-        description: "Classic cheese and tomato pizza.",
-        price: 200,
-        imageUrl: "biriyani.jpg"
-      },
-      {
-        name: "Pasta Alfredo",
-        description: "Creamy alfredo pasta with mushrooms.",
-        price: 250,
-        imageUrl: "biriyani.jpg"
-      }
+      { name: "Margherita Pizza", description: "Classic cheese and tomato pizza.", price: 200, imageUrl: "biriyani.jpg" },
+      { name: "Pasta Alfredo", description: "Creamy alfredo pasta with mushrooms.", price: 250, imageUrl: "biriyani.jpg" },
+      { name: "Butter Chicken", description: "Chicken in creamy tomato sauce.", price: 300, imageUrl: "biriyani.jpg" },
+      { name: "Veg Biryani", description: "Spiced rice with vegetables.", price: 220, imageUrl: "biriyani.jpg" },
+      { name: "Paneer Butter Masala", description: "Paneer in rich butter sauce.", price: 280, imageUrl: "biriyani.jpg" }
     ]
   },
   {
     category: "Salads",
     items: [
-      {
-        name: "Caesar Salad",
-        description: "Fresh lettuce, croutons, and Caesar dressing.",
-        price: 150,
-        imageUrl: "salad.jpg"
-      },
-      {
-        name: "Greek Salad",
-        description: "Mixed greens with olives and feta cheese.",
-        price: 170,
-        imageUrl: "salad.jpg"
-      }
+      { name: "Caesar Salad", description: "Fresh lettuce, croutons, and Caesar dressing.", price: 150, imageUrl: "salad.jpg" },
+      { name: "Greek Salad", description: "Mixed greens with olives and feta cheese.", price: 170, imageUrl: "salad.jpg" },
+      { name: "Caprese Salad", description: "Tomato, mozzarella, and basil.", price: 140, imageUrl: "salad.jpg" },
+      { name: "Quinoa Salad", description: "Quinoa with veggies and herbs.", price: 180, imageUrl: "salad.jpg" },
+      { name: "Fruit Salad", description: "Mixed seasonal fruits.", price: 120, imageUrl: "salad.jpg" }
     ]
   },
-
-  // Add more categories as needed
-];
+  {
+    category: "Soups",
+    items: [
+      { name: "Tomato Soup", description: "Creamy tomato soup.", price: 90, imageUrl: "rolls.jpg" },
+      { name: "Minestrone Soup", description: "Italian vegetable soup.", price: 100, imageUrl: "rolls.jpg" },
+      { name: "Chicken Soup", description: "Warm chicken soup with herbs.", price: 120, imageUrl: "rolls.jpg" },
+      { name: "Mushroom Soup", description: "Creamy mushroom soup.", price: 110, imageUrl: "rolls.jpg" },
+      { name: "Corn Soup", description: "Sweet corn and veggies.", price: 80, imageUrl: "rolls.jpg" }
+    ]
+  },
+  {
+    category: "Drinks",
+    items: [
+      { name: "Lemonade", description: "Refreshing lemon drink.", price: 50, imageUrl: "salad.jpg" },
+      { name: "Iced Tea", description: "Chilled tea with lemon.", price: 60, imageUrl: "salad.jpg" },
+      { name: "Smoothie", description: "Blended fruit smoothie.", price: 120, imageUrl: "salad.jpg" },
+      { name: "Coffee", description: "Fresh brewed coffee.", price: 70, imageUrl: "salad.jpg" },
+      { name: "Mojito", description: "Mint and lime cooler.", price: 80, imageUrl: "salad.jpg" }
+    ]
+  },
+  {
+    category: "Desserts",
+    items: [
+      { name: "Brownie", description: "Chocolate brownie.", price: 100, imageUrl: "biriyani.jpg" },
+      { name: "Ice Cream", description: "Vanilla ice cream.", price: 80, imageUrl: "biriyani.jpg" },
+      { name: "Gulab Jamun", description: "Sweet dumplings in syrup.", price: 90, imageUrl: "biriyani.jpg" },
+      { name: "Cheesecake", description: "Creamy cheesecake.", price: 150, imageUrl: "biriyani.jpg" },
+      { name: "Fruit Tart", description: "Tart filled with fresh fruits.", price: 130, imageUrl: "biriyani.jpg" }
+    ]
+  },
+  {
+    category: "Sandwiches",
+    items: [
+      { name: "Veggie Sandwich", description: "Grilled veggie sandwich.", price: 90, imageUrl: "rolls.jpg" },
+      { name: "Club Sandwich", description: "Classic club sandwich.", price: 120, imageUrl: "rolls.jpg" },
+      { name: "Grilled Cheese", description: "Cheesy grilled sandwich.", price: 100, imageUrl: "rolls.jpg" },
+      { name: "Chicken Sandwich", description: "Chicken-filled sandwich.", price: 130, imageUrl: "rolls.jpg" },
+      { name: "Egg Sandwich", description: "Egg and mayo sandwich.", price: 80, imageUrl: "rolls.jpg" }
+    ]
+  },
+  {
+    category: "Beverages",
+    items: [
+      { name: "Espresso", description: "Strong black coffee.", price: 60, imageUrl: "salad.jpg" },
+      { name: "Latte", description: "Milky coffee.", price: 80, imageUrl: "salad.jpg" },
+      { name: "Green Tea", description: "Refreshing green tea.", price: 50, imageUrl: "salad.jpg" },
+      { name: "Hot Chocolate", description: "Rich chocolate drink.", price: 100, imageUrl: "salad.jpg" },
+      { name: "Milkshake", description: "Thick and creamy shake.", price: 120, imageUrl: "salad.jpg" }
+    ]
+  },
+  {
+    category: "Burgers",
+    items: [
+      { name: "Veg Burger", description: "Burger with veggie patty.", price: 120, imageUrl: "biriyani.jpg" },
+      { name: "Cheese Burger", description: "Burger with cheese.", price: 150, imageUrl: "biriyani.jpg" },
+      { name: "Chicken Burger", description: "Burger with chicken patty.", price: 170, imageUrl: "biriyani.jpg" },
+      { name: "Fish Burger", description: "Burger with fish fillet.", price: 180, imageUrl: "biriyani.jpg" },
+      { name: "BBQ Burger", description: "Burger with BBQ sauce.", price: 160, imageUrl: "biriyani.jpg" }
+    ]
+  },
+  {
+    category: "Pasta",
+    items: [
+      { name: "Spaghetti Bolognese", description: "Spaghetti with meat sauce.", price: 220, imageUrl: "rolls.jpg" },
+      { name: "Penne Arrabbiata", description: "Spicy tomato sauce pasta.", price: 200, imageUrl: "rolls.jpg" },
+      { name: "Fettuccine Alfredo", description: "Pasta with alfredo sauce.", price: 250, imageUrl: "rolls.jpg" },
+      { name: "Pesto Pasta", description: "Pasta with pesto sauce.", price: 230, imageUrl: "rolls.jpg" },
+      { name: "Lasagna", description: "Layered pasta with cheese.", price: 270, imageUrl: "rolls.jpg" }
+    ]
+  },
+  {
+    category: "Pizza",
+    items: [
+      { name: "Pepperoni Pizza", description: "Pizza with pepperoni.", price: 250, imageUrl: "biriyani.jpg" },
+      { name: "Hawaiian Pizza", description: "Pizza with pineapple and ham.", price: 240, imageUrl: "biriyani.jpg" },
+      { name: "BBQ Chicken Pizza", description: "Pizza with BBQ chicken.", price: 260, imageUrl: "biriyani.jpg" },
+      { name: "Veggie Pizza", description: "Pizza with mixed vegetables.", price: 220, imageUrl: "biriyani.jpg" },
+      { name: "Mushroom Pizza", description: "Pizza with mushrooms.", price: 230, imageUrl: "biriyani.jpg" }
+    ]
+  },
+  {
+    category: "Rice Dishes",
+    items: [
+      { name: "Fried Rice", description: "Rice with veggies and soy sauce.", price: 150, imageUrl: "salad.jpg" },
+      { name: "Egg Fried Rice", description: "Fried Rice with veggies and soy sauce", price: 180, imageUrl: "salad.jpg" }
+    ]
+  }
+  ]
 let cart = [];  // Cart array to hold items
 
 function loadMenu() {
   const menuSection = document.getElementById("menu-section");
-  const categoryNav = document.querySelector('.category-nav'); // Select the category navigation
+  const categoryNav = document.querySelector('.category-nav');
+  categoryNav.style.overflowX = "auto"; // Enable horizontal scrolling
 
   menuData.forEach((category) => {
-    const categoryId = category.category.toLowerCase().replace(/\s+/g, '-'); // Create a unique ID for the category
+    const categoryId = category.category.toLowerCase().replace(/\s+/g, '-');
 
     // Create category link
     const categoryLink = document.createElement("a");
-    categoryLink.href = `#${categoryId}`; // Set href to the category ID
+    categoryLink.href = `#${categoryId}`;
     categoryLink.innerText = category.category;
     categoryLink.classList.add('category-link');
-    categoryLink.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevent default anchor behavior
-      document.querySelectorAll('.category-link').forEach(link => {
-        link.classList.remove('active-link');
-      });
+    categoryNav.appendChild(categoryLink);
 
-      // Add 'active-link' class to the clicked link
+    categoryLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
       categoryLink.classList.add('active-link');
 
       const categoryHeader = document.getElementById(categoryId);
-
-      const offset = categoryNav.offsetHeight; // Get the height of the navbar
+      const offset = categoryNav.offsetHeight;
 
       window.scrollTo({
-        top: categoryHeader.offsetTop - offset, // Scroll with offset
+        top: categoryHeader.offsetTop - offset,
         behavior: 'smooth'
       });
-      // document.getElementById(categoryId).scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the category
     });
 
-    // Append category link to navigation
-    categoryNav.appendChild(categoryLink);
-
-    // Create category header in the menu section
     const categoryHeader = document.createElement("h2");
     categoryHeader.innerText = category.category;
-    categoryHeader.id = categoryId; // Set the ID for the category header
+    categoryHeader.id = categoryId;
     menuSection.appendChild(categoryHeader);
 
     category.items.forEach(item => {
       const menuItem = document.createElement("div");
       menuItem.classList.add("menu-item");
       menuItem.innerHTML = `
-          <img src="${item.imageUrl}" alt="${item.name}" class="menu-image">
-          <div class="menu-content">
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <p>₹${item.price}</p>
-            <button onclick="addToCart('${item.name}', ${item.price})" class="add-cart">Add to Feast</button>
-          </div>
-        `;
+        <img src="${item.imageUrl}" alt="${item.name}" class="menu-image">
+        <div class="menu-content">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <p>₹${item.price}</p>
+          <button onclick="addToCart('${item.name}', ${item.price})" class="add-cart">Add to Feast</button>
+        </div>
+      `;
       menuSection.appendChild(menuItem);
     });
-
   });
 
-  // Create the View Cart button
   const cartBtn = document.createElement('p');
   cartBtn.classList.add('cart-p');
   cartBtn.innerHTML = `<button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>`;
-
-  // Append the cart button to the menu section
   menuSection.appendChild(cartBtn);
+
+  const observerOptions = {
+    root: null,
+    rootMargin: `-${categoryNav.offsetHeight}px 0px 0px 0px`,
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const categoryLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
+        if (categoryLink) {
+          categoryLink.classList.add('active-link');
+          
+          // Scroll the active link into view
+          categoryLink.scrollIntoView({
+            behavior: "smooth",
+            inline: "center"
+          });
+        }
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll("#menu-section h2").forEach(header => {
+    observer.observe(header);
+  });
 }
+
+
 
 // Call loadMenu on page load
 document.addEventListener("DOMContentLoaded", loadMenu);
@@ -271,5 +363,7 @@ function checkout() {
 
 //     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Update last scroll position
 // });
+
+
 // Load menu on page load
 document.addEventListener("DOMContentLoaded", loadMenu);
