@@ -288,9 +288,9 @@ button:active {
   color: #d84315;
 }
 
-.category-link:hover {
+/* .category-link:hover {
   color: #d84315;
-}
+} */
 
 #total-amount {
   font-weight: bold;

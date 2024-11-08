@@ -172,13 +172,14 @@ const menuData = [
   }
   ]
 let cart = [];  // Cart array to hold items
-
+let selected = undefined;
 function loadMenu() {
   const menuSection = document.getElementById("menu-section");
   const categoryNav = document.querySelector('.category-nav');
-  categoryNav.style.overflowX = "auto"; // Enable horizontal scrolling
+  categoryNav.style.overflowX = "auto"; // Ensure horizontal scrolling is enabled
+  categoryNav.style.whiteSpace = "nowrap"; // Prevent wrapping, allowing the categories to be on a single line
 
-  menuData.forEach((category) => {
+  menuData.forEach((category, index) => {
     const categoryId = category.category.toLowerCase().replace(/\s+/g, '-');
 
     // Create category link
@@ -186,6 +187,11 @@ function loadMenu() {
     categoryLink.href = `#${categoryId}`;
     categoryLink.innerText = category.category;
     categoryLink.classList.add('category-link');
+    categoryLink.style.display = "inline-block"; // Make sure links are inline for horizontal scrolling
+    categoryLink.addEventListener('click',(e)=>navLinkClick(categoryId,e))
+    if(index == 0){
+      categoryLink.classList.add('active-link')
+    }
     categoryNav.appendChild(categoryLink);
 
     categoryLink.addEventListener('click', (e) => {
@@ -210,7 +216,7 @@ function loadMenu() {
     category.items.forEach(item => {
       const menuItem = document.createElement("div");
       menuItem.classList.add("menu-item");
-      menuItem.innerHTML = `
+      menuItem.innerHTML = `        
         <img src="${item.imageUrl}" alt="${item.name}" class="menu-image">
         <div class="menu-content">
           <h3>${item.name}</h3>
@@ -223,46 +229,74 @@ function loadMenu() {
     });
   });
 
+
   const cartBtn = document.createElement('p');
   cartBtn.classList.add('cart-p');
   cartBtn.innerHTML = `<button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>`;
   menuSection.appendChild(cartBtn);
 
+  // IntersectionObserver options to reduce flickering
   const observerOptions = {
     root: null,
     rootMargin: `-${categoryNav.offsetHeight}px 0px 0px 0px`,
-    threshold: 0.5
+    threshold: 0.5 // Adjust this for how much of the section should be in view to trigger the observer
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const categoryLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+      // if()
+      // console.log(entry.target.id);
+      
+      const categoryLink = document.querySelector(`a[href="#${selected ? selected : entry.target.id}"]`);
+      
       if (entry.isIntersecting) {
+        let active = document.querySelector(".active-link")
         document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
+        // console.log(categoryLink, "categoryLink");
+        // Add the active class only when a new section becomes active
         if (categoryLink) {
           categoryLink.classList.add('active-link');
           
-          // Scroll the active link into view
-          categoryLink.scrollIntoView({
-            behavior: "smooth",
-            inline: "center"
-          });
+          // Scroll the active link into view, only if needed (to prevent frequent scrolls)
+          if (document.querySelector('.active-link') !== active) {
+            
+            categoryLink.scrollIntoView({
+              behavior: "smooth",
+              inline: "center"
+            });
+          }  
         }
       }
+      
     });
-  }, observerOptions);
+  }, observerOptions)
+  
 
+let scrollTimeout;
+
+// Listen for scroll events
+window.addEventListener('scroll', () => {
+  // Clear the previous timeout if scrolling is still happening
+  clearTimeout(scrollTimeout);
+
+  // Set a new timeout to detect when scrolling has stopped
+  scrollTimeout = setTimeout(() => {
+    console.log('Scrolling has stopped!');
+    selected = undefined
+  }, 200); // 200ms delay to wait after scrolling stops (you can adjust this value)
+});
+
+  // Observing each category header
   document.querySelectorAll("#menu-section h2").forEach(header => {
     observer.observe(header);
   });
 }
-
-
-
+function navLinkClick(categoryId, e){
+  e.preventDefault();
+  selected = categoryId
+}
 // Call loadMenu on page load
 document.addEventListener("DOMContentLoaded", loadMenu);
-
-
 
 
 // Add to cart function
@@ -302,7 +336,6 @@ function updateCart() {
   document.getElementById("total-amount").innerText = `Total: ₹${totalAmount}`;
   const cartBtn = document.querySelector(".view-cart-button")
 
-  console.log(cartBtn);
   // cartBtn.style.display = "block";
   cart
   cartBtn.innerHTML = `
