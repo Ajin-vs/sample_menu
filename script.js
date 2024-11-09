@@ -173,7 +173,9 @@ const menuData = [
   ]
 let cart = [];  // Cart array to hold items
 let selected = undefined;
-function loadMenu() {
+function loadMenu(resturanId) {
+  console.log(resturanId);
+  
   const menuSection = document.getElementById("menu-section");
   const categoryNav = document.querySelector('.category-nav');
   categoryNav.style.overflowX = "auto"; // Ensure horizontal scrolling is enabled
@@ -398,6 +400,23 @@ function checkout() {
 //     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Update last scroll position
 // });
 
+ // Get the query string from the URL
+ const queryString = window.location.search;
 
+ // Parse the query string
+ const urlParams = new URLSearchParams(queryString);
+
+ // Retrieve specific query parameters
+ const param1 = urlParams.get('param1');
+//  const param2 = urlParams.get('param2');
+
+ // Display the parameters on the page or use them as needed
+ if (param1) {
+  console.log(param1);
+  document.addEventListener("DOMContentLoaded", ()=>loadMenu(param1));
+  //  document.write(`<p>Parameter 1: ${param1}</p>`);
+ }
+ else{
+  document.addEventListener("DOMContentLoaded", ()=>loadMenu(param1 = ''));
+ }
 // Load menu on page load
-document.addEventListener("DOMContentLoaded", loadMenu);
