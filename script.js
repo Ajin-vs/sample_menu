@@ -419,17 +419,3 @@ function checkout() {
  else{
   document.addEventListener("DOMContentLoaded", ()=>loadMenu(param1 = ''));
  }
-  // Google Drive file ID
-  const fileId = '1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh';  // File ID from the shared link
-  const url = `https://drive.google.com/uc?export=download&id=1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh`;
-
-  fetch(url)
-    .then(response => response.json())  // Assuming the file is in JSON format
-    .then(data => {
-      console.log(data);  // Log the data
-      // document.getElementById('json-content').innerHTML = JSON.stringify(data, null, 2);  // Display the JSON content
-    })
-    .catch(error => {
-      console.error('Error fetching JSON:', error);
-    });
-// Load menu on page load
