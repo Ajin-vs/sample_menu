@@ -420,23 +420,16 @@ function checkout() {
   document.addEventListener("DOMContentLoaded", ()=>loadMenu(param1 = ''));
  }
   // Google Drive file ID
-  const fileId = "1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh";
+  const fileId = '1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh';  // File ID from the shared link
+  const url = `https://drive.google.com/uc?export=download&id=1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh`;
 
-  // Direct download URL format
-  const url = `https://drive.google.com/uc?export=download&id=${fileId}`;
-
-  // Fetch the JSON file and display it
   fetch(url)
-      .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        
-          // document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
-      })
-      .catch(error => {
-          document.getElementById('jsonData').textContent = `Error: ${error.message}`;
-      });
+    .then(response => response.json())  // Assuming the file is in JSON format
+    .then(data => {
+      console.log(data);  // Log the data
+      // document.getElementById('json-content').innerHTML = JSON.stringify(data, null, 2);  // Display the JSON content
+    })
+    .catch(error => {
+      console.error('Error fetching JSON:', error);
+    });
 // Load menu on page load
