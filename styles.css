@@ -181,10 +181,11 @@ header {
 }
 
 .buttons-container {
-  display: flex;
-  flex-direction: row; /* Stack buttons vertically */
-  align-items: center; /* Center-align buttons horizontally */
-
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Aligns items vertically (if needed) */
+    margin-left: auto; /* Pushes buttons to the right */
+    justify-content: flex-end; /* Ensures buttons are aligned to the right */
 }
 
 button {

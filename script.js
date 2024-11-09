@@ -242,34 +242,34 @@ function loadMenu() {
     threshold: 0.5 // Adjust this for how much of the section should be in view to trigger the observer
   };
 
+  let debounceTimer;
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // if()
-      // console.log(entry.target.id);
-      
-      const categoryLink = document.querySelector(`a[href="#${selected ? selected : entry.target.id}"]`);
-      
-      if (entry.isIntersecting) {
-        let active = document.querySelector(".active-link")
-        document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
-        // console.log(categoryLink, "categoryLink");
-        // Add the active class only when a new section becomes active
-        if (categoryLink) {
-          categoryLink.classList.add('active-link');
-          
-          // Scroll the active link into view, only if needed (to prevent frequent scrolls)
-          if (document.querySelector('.active-link') !== active) {
-            
-            categoryLink.scrollIntoView({
-              behavior: "smooth",
-              inline: "center"
-            });
-          }  
+    clearTimeout(debounceTimer); // Clear any previous timer
+  
+    // Set a debounce timer to stop updates until scrolling completes
+    debounceTimer = setTimeout(() => {
+      entries.forEach(entry => {
+        const categoryLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+  
+        if (entry.isIntersecting) {
+          let active = document.querySelector(".active-link");
+          document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
+  
+          if (categoryLink) {
+            categoryLink.classList.add('active-link');
+  
+            if (document.querySelector('.active-link') !== active) {
+              categoryLink.scrollIntoView({
+                behavior: "smooth",
+                inline: "center"
+              });
+            }
+          }
         }
-      }
-      
-    });
-  }, observerOptions)
+      });
+    }, 250); // Adjust the delay (in milliseconds) as needed
+  }, observerOptions);
+  
   
 
 let scrollTimeout;
@@ -323,10 +323,11 @@ function updateCart() {
     cartItem.classList.add("cart-item");
     cartItem.innerHTML = `
       <div>
-        <span>${item.name} - ₹${item.price} x ${item.quantity}</span>
+        <span>${item.name} - ₹${item.price} </span>
       </div>
       <div class="buttons-container">
         <button onclick="changeQuantity('${item.name}', 1)">+</button>
+        <span>${item.quantity}</span>
         <button onclick="changeQuantity('${item.name}', -1)">-</button>
       </div>
     `;
