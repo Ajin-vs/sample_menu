@@ -419,22 +419,24 @@ function checkout() {
  else{
   document.addEventListener("DOMContentLoaded", ()=>loadMenu(param1 = ''));
  }
- const fileId = '1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh';
+  // Google Drive file ID
+  const fileId = "1QY9cvGNiNSKNYVNKp3FeJ9rW8K9qXyyh";
 
-  // Function to fetch the file content
-  function fetchJSONFromGoogleDrive() {
-    const url = `https://drive.google.com/file/d/${fileId}/view?usp=drive_link?alt=media`;
+  // Direct download URL format
+  const url = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
-    fetch(url)
-      .then(response => response.json())
+  // Fetch the JSON file and display it
+  fetch(url)
+      .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+      })
       .then(data => {
         console.log(data);
-        document.getElementById('json-content').innerHTML = JSON.stringify(data, null, 2);
+        
+          // document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
       })
       .catch(error => {
-        console.error('Error fetching JSON:', error);
+          document.getElementById('jsonData').textContent = `Error: ${error.message}`;
       });
-  }
-
-  fetchJSONFromGoogleDrive();
 // Load menu on page load
