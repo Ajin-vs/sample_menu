@@ -84,10 +84,7 @@ function loadMenu(resturanId) {
           cartBtn.classList.add('cart-p');
           cartBtn.innerHTML = `<button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>`;
           menuSection.appendChild(cartBtn);
-        }
-
-
-        // IntersectionObserver options to reduce flickering
+            // IntersectionObserver options to reduce flickering
         const observerOptions = {
           root: null,
           rootMargin: `-${categoryNav.offsetHeight}px 0px 0px 0px`,
@@ -144,6 +141,8 @@ function loadMenu(resturanId) {
         });
         // Display file content in the HTML
         //  document.getElementById('file-content').innerText = data;
+          
+        }
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
