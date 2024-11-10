@@ -10,7 +10,7 @@ function loadMenu(resturanId) {
   if (resturanId) {
     const region = 'ap-south-1';
     // URL of the file in S3
-    const s3FileUrl = `https://menus-pro.s3.${region}.amazonaws.com/${cleanedStr}/${ Number(cleanedStr)}.json`;
+    const s3FileUrl = `https://menus-pro.s3.${region}.amazonaws.com/${cleanedStr}/${Number(cleanedStr)}.json`;
 
     // Fetch the file from S3
     fetch(s3FileUrl)
@@ -21,68 +21,71 @@ function loadMenu(resturanId) {
         return response.json();  // Use response.json() if it’s a JSON file
       })
       .then(data => {
-        menuData = data;
-        const menuSection = document.getElementById("menu-section");
-        const categoryNav = document.querySelector('.category-nav');
-        categoryNav.style.overflowX = "auto"; // Ensure horizontal scrolling is enabled
-        categoryNav.style.whiteSpace = "nowrap"; // Prevent wrapping, allowing the categories to be on a single line
+        if (data.active) {
+          menuData = data.menu;
+          const menuSection = document.getElementById("menu-section");
+          const categoryNav = document.querySelector('.category-nav');
+          categoryNav.style.overflowX = "auto"; // Ensure horizontal scrolling is enabled
+          categoryNav.style.whiteSpace = "nowrap"; // Prevent wrapping, allowing the categories to be on a single line
 
-        menuData.forEach((category, index) => {
-          const categoryId = category.category.toLowerCase().replace(/\s+/g, '-');
+          menuData.forEach((category, index) => {
+            const categoryId = category.category.toLowerCase().replace(/\s+/g, '-');
 
-          // Create category link
-          const categoryLink = document.createElement("a");
-          categoryLink.href = `#${categoryId}`;
-          categoryLink.innerText = category.category;
-          categoryLink.classList.add('category-link');
-          categoryLink.style.display = "inline-block"; // Make sure links are inline for horizontal scrolling
-          categoryLink.addEventListener('click', (e) => navLinkClick(categoryId, e))
-          if (index == 0) {
-            categoryLink.classList.add('active-link')
-          }
-          categoryNav.appendChild(categoryLink);
+            // Create category link
+            const categoryLink = document.createElement("a");
+            categoryLink.href = `#${categoryId}`;
+            categoryLink.innerText = category.category;
+            categoryLink.classList.add('category-link');
+            categoryLink.style.display = "inline-block"; // Make sure links are inline for horizontal scrolling
+            categoryLink.addEventListener('click', (e) => navLinkClick(categoryId, e))
+            if (index == 0) {
+              categoryLink.classList.add('active-link')
+            }
+            categoryNav.appendChild(categoryLink);
 
-          categoryLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
-            categoryLink.classList.add('active-link');
+            categoryLink.addEventListener('click', (e) => {
+              e.preventDefault();
+              document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
+              categoryLink.classList.add('active-link');
 
-            const categoryHeader = document.getElementById(categoryId);
-            const offset = categoryNav.offsetHeight;
+              const categoryHeader = document.getElementById(categoryId);
+              const offset = categoryNav.offsetHeight;
 
-            window.scrollTo({
-              top: categoryHeader.offsetTop - offset,
-              behavior: 'smooth'
+              window.scrollTo({
+                top: categoryHeader.offsetTop - offset,
+                behavior: 'smooth'
+              });
+            });
+
+            const categoryHeader = document.createElement("h2");
+            categoryHeader.innerText = category.category;
+            categoryHeader.id = categoryId;
+            menuSection.appendChild(categoryHeader);
+            //  <img class="menu-image" src="data:image/jpeg;base64,${url}" />
+
+            category.items.forEach(item => {
+              const menuItem = document.createElement("div");
+              menuItem.classList.add("menu-item");
+              menuItem.innerHTML = `        
+            <img src="${item.imageUrl}" alt="${item.name}" class="menu-image">
+            <div class="menu-content">
+              <h3>${item.name}</h3>
+              <p>${item.description}</p>
+              <p>₹${item.price}</p>
+              <button onclick="addToCart('${item.name}', ${item.price})" class="add-cart">Add to Feast</button>
+            </div>
+          `;
+              menuSection.appendChild(menuItem);
             });
           });
 
-          const categoryHeader = document.createElement("h2");
-          categoryHeader.innerText = category.category;
-          categoryHeader.id = categoryId;
-          menuSection.appendChild(categoryHeader);
-        //  <img class="menu-image" src="data:image/jpeg;base64,${url}" />
 
-          category.items.forEach(item => {
-            const menuItem = document.createElement("div");
-            menuItem.classList.add("menu-item");
-            menuItem.innerHTML = `        
-          <img src="${item.imageUrl}" alt="${item.name}" class="menu-image">
-          <div class="menu-content">
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <p>₹${item.price}</p>
-            <button onclick="addToCart('${item.name}', ${item.price})" class="add-cart">Add to Feast</button>
-          </div>
-        `;
-            menuSection.appendChild(menuItem);
-          });
-        });
+          const cartBtn = document.createElement('p');
+          cartBtn.classList.add('cart-p');
+          cartBtn.innerHTML = `<button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>`;
+          menuSection.appendChild(cartBtn);
+        }
 
-
-        const cartBtn = document.createElement('p');
-        cartBtn.classList.add('cart-p');
-        cartBtn.innerHTML = `<button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>`;
-        menuSection.appendChild(cartBtn);
 
         // IntersectionObserver options to reduce flickering
         const observerOptions = {
