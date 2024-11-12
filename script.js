@@ -3,17 +3,12 @@ let cart = [];  // Cart array to hold items
 let selected = undefined;
 function loadMenu(resturanId) {
   console.log(resturanId);
-  // let resId = Number(resturanId);
-  // console.log(resId);
   let cleanedStr = resturanId.replace(/'/g, "");  // Removes all single quotes
 
   if (resturanId) {
-    const region = 'ap-south-1';
-    // URL of the file in S3
-    const s3FileUrl = `https://menus-pro.s3.${region}.amazonaws.com/${cleanedStr}/${Number(cleanedStr)}.json`;
-
+    const cldUrl = `https://pub-fbdbb25b0f934dd8b443b70f85c547a0.r2.dev/${cleanedStr}.json`
     // Fetch the file from S3
-    fetch(s3FileUrl)
+    fetch(cldUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
