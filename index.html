@@ -18,14 +18,14 @@
 
 
     <!-- Header with Logo -->
-    <header class="header"  >
+    <header class="header">
       <img src="logo.jpg" alt="Restaurant Logo" class="logo">
       <h1 class="restaurant-name">Urban Cafe</h1>
     </header>
     <!-- Category Navigation Bar -->
     <!-- Navigation for categories will be added here -->
     <nav class="category-nav" style="position: sticky;"></nav>
-  
+
     <!-- Menu Section -->
     <section id="menu-section" style="position: sticky; margin-bottom: 62px;"></section>
 
@@ -39,18 +39,30 @@
         <!-- <button onclick="checkout()">Checkout</button> -->
       </div>
     </div>
-  </div>    
+  </div>
   <script src="script.js"></script>
   <script>
     // Function to append a random query string to the CSS and JS file to bypass the cache
     function refreshFiles() {
-      var timestamp = new Date().getTime();  // Get the current time as a unique string
-      
+      var randomString = Math.random().toString(36).substring(7); // generates a random string
+
+
       // Update the href and src attributes with the new query parameter
-      document.querySelector('link[rel="stylesheet"]').href = 'styles.css?v=' + timestamp;
-      document.querySelector('script[src="script.js"]').src = 'script.js?v=' + timestamp;
+      var script = document.querySelector('script[src="script.js"]');
+      // Ensure the script URL is updated with the new timestamp
+      if (script) {
+        console.log("if");
+        
+        script.src = 'script.js?v=' + randomString;
+        // document.querySelector('script[src="script.js"]').src = 'script.js?v=' + randomString;
+      }
+      // console.log(document.querySelector('script[src="script.js"]'));
+      document.querySelector('link[rel="stylesheet"]').href = 'styles.css?v=' + randomString;
+
+
+      // document.querySelector('script[src="script.js"]').src = 'script.js?v=' + timestamp;
     }
-  
+
     // Call the function to refresh the files when the page is loaded
     window.onload = refreshFiles;
   </script>
