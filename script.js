@@ -1,6 +1,7 @@
 let menuData = []
 let cart = [];  // Cart array to hold items
 let selected = undefined;
+let scro = 0;
 function loadMenu(resturanId) {
   console.log(resturanId);
   let cleanedStr = resturanId.replace(/'/g, "");  // Removes all single quotes
@@ -17,6 +18,10 @@ function loadMenu(resturanId) {
       })
       .then(data => {
         if (data.active) {
+          const logimg = document.getElementById("logimg");
+          const capt = document.getElementById("capt");
+          logimg.src = data?.logo || '';
+          capt.innerHTML = data.resturant;
           menuData = data.menu;
           const menuSection = document.getElementById("menu-section");
           const categoryNav = document.querySelector('.category-nav');
@@ -24,7 +29,7 @@ function loadMenu(resturanId) {
           categoryNav.style.whiteSpace = "nowrap"; // Prevent wrapping, allowing the categories to be on a single line
 
           menuData.forEach((category, index) => {
-            const categoryId = category.category.toLowerCase().replace(/\s+/g, '-');
+            const categoryId = category.id.toLowerCase().replace(/\s+/g, '-');
 
             // Create category link
             const categoryLink = document.createElement("a");
@@ -83,19 +88,18 @@ function loadMenu(resturanId) {
         const observerOptions = {
           root: null,
           rootMargin: `-${categoryNav.offsetHeight}px 0px 0px 0px`,
-          threshold: 0.5 // Adjust this for how much of the section should be in view to trigger the observer
+          threshold: 0.8 // Adjust this for how much of the section should be in view to trigger the observer
         };
 
         let debounceTimer;
         const observer = new IntersectionObserver((entries) => {
-          clearTimeout(debounceTimer); // Clear any previous timer
-
+          clearTimeout(debounceTimer); // Clear any previous timer          
           // Set a debounce timer to stop updates until scrolling completes
           debounceTimer = setTimeout(() => {
             entries.forEach(entry => {
               const categoryLink = document.querySelector(`a[href="#${entry.target.id}"]`);
-
-              if (entry.isIntersecting) {
+              
+              if (entry.isIntersecting ) {
                 let active = document.querySelector(".active-link");
                 document.querySelectorAll('.category-link').forEach(link => link.classList.remove('active-link'));
 
@@ -120,13 +124,14 @@ function loadMenu(resturanId) {
 
         // Listen for scroll events
         window.addEventListener('scroll', () => {
+          scro = 1;
           // Clear the previous timeout if scrolling is still happening
           clearTimeout(scrollTimeout);
 
           // Set a new timeout to detect when scrolling has stopped
           scrollTimeout = setTimeout(() => {
             console.log('Scrolling has stopped!');
-            selected = undefined
+            selected = undefined            
           }, 200); // 200ms delay to wait after scrolling stops (you can adjust this value)
         });
 
@@ -138,6 +143,7 @@ function loadMenu(resturanId) {
         //  document.getElementById('file-content').innerText = data;
           
         }
+        
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
@@ -178,12 +184,14 @@ function updateCart() {
     cartItem.classList.add("cart-item");
     cartItem.innerHTML = `
       <div>
-        <span>${item.name} - ₹${item.price} </span>
+      <span>${item.quantity} - </span>
+        <span>${item.name} - ₹${item.quantity * item.price} </span>
       </div>
       <div class="buttons-container">
-        <button onclick="changeQuantity('${item.name}', 1)">+</button>
-        <span>${item.quantity}</span>
+       
+        
         <button onclick="changeQuantity('${item.name}', -1)">-</button>
+        <button onclick="changeQuantity('${item.name}', 1)">+</button>
       </div>
     `;
     cartItems.appendChild(cartItem);
@@ -260,7 +268,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 // Retrieve specific query parameters
-const param1 = urlParams.get('param1');
+const param1 = urlParams.get('param');
 //  const param2 = urlParams.get('param2');
 
 // Display the parameters on the page or use them as needed
