@@ -3,7 +3,6 @@ let cart = [];  // Cart array to hold items
 let selected = undefined;
 let scro = 0;
 function loadMenu(resturanId) {
-  console.log(resturanId);
   let cleanedStr = resturanId.replace(/'/g, "");  // Removes all single quotes
 
   if (resturanId) {
@@ -21,6 +20,9 @@ function loadMenu(resturanId) {
           const logimg = document.getElementById("logimg");
           const capt = document.getElementById("capt");
           logimg.src = data?.logo || '';
+          if(data?.logo){
+            logimg.style.display = 'block'
+          }
           capt.innerHTML = data.resturant;
           menuData = data.menu;
           const menuSection = document.getElementById("menu-section");
@@ -50,7 +52,6 @@ function loadMenu(resturanId) {
 
               const categoryHeader = document.getElementById(categoryId);
               const offset = categoryNav.offsetHeight;
-
               window.scrollTo({
                 top: categoryHeader.offsetTop - offset,
                 behavior: 'smooth'
@@ -96,7 +97,7 @@ function loadMenu(resturanId) {
           clearTimeout(debounceTimer); // Clear any previous timer          
           // Set a debounce timer to stop updates until scrolling completes
           debounceTimer = setTimeout(() => {
-            entries.forEach(entry => {
+            entries.forEach((entry) => {
               const categoryLink = document.querySelector(`a[href="#${entry.target.id}"]`);
               
               if (entry.isIntersecting ) {
@@ -273,7 +274,6 @@ const param1 = urlParams.get('param');
 
 // Display the parameters on the page or use them as needed
 if (param1) {
-  console.log(param1);
   document.addEventListener("DOMContentLoaded", () => loadMenu(param1));
   //  document.write(`<p>Parameter 1: ${param1}</p>`);
 }
