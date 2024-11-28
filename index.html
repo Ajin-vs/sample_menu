@@ -7,9 +7,17 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+
   <title>Restaurant Menu</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <!-- <link rel="stylesheet" href="styles.css?timestamp=<?=time()?>"> -->
+  <script>
+    // Add CSS with a timestamp dynamically
+    const styleSheet = document.createElement('link');
+    styleSheet.rel = 'stylesheet';
+    styleSheet.href = `styles.css?v=${new Date().getTime()}`;
+    document.head.appendChild(styleSheet);
+  </script>
+  </head>
 
 <body>
   <div id="json-content"></div>
@@ -40,31 +48,12 @@
       </div>
     </div>
   </div>
-  <script src="script.js"></script>
   <script>
-    // Function to append a random query string to the CSS and JS file to bypass the cache
-    function refreshFiles() {
-      var randomString = Math.random().toString(36).substring(7); // generates a random string
+   const script = document.createElement('script');
+    script.src = `script.js?v=${new Date().getTime()}`;
+    script.defer = true; // Ensure the script waits for the DOM to be parsed
+    document.head.appendChild(script);
 
-
-      // Update the href and src attributes with the new query parameter
-      var script = document.querySelector('script[src="script.js"]');
-      // Ensure the script URL is updated with the new timestamp
-      if (script) {
-        console.log("if");
-        
-        script.src = 'script.js?v=' + randomString;
-        // document.querySelector('script[src="script.js"]').src = 'script.js?v=' + randomString;
-      }
-      // console.log(document.querySelector('script[src="script.js"]'));
-      document.querySelector('link[rel="stylesheet"]').href = 'styles.css?v=' + randomString;
-
-
-      // document.querySelector('script[src="script.js"]').src = 'script.js?v=' + timestamp;
-    }
-
-    // Call the function to refresh the files when the page is loaded
-    window.onload = refreshFiles;
   </script>
 </body>
 

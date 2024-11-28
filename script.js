@@ -2,7 +2,7 @@ let menuData = []
 let cart = [];  // Cart array to hold items
 let selected = undefined;
 let scro = 0;
-function loadMenu(resturanId) {
+function loadMenu(resturanId) {  
   let cleanedStr = resturanId.replace(/'/g, "");  // Removes all single quotes
 
   if (resturanId) {
@@ -269,16 +269,23 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 // Retrieve specific query parameters
-const param1 = urlParams.get('param');
-//  const param2 = urlParams.get('param2');
+const param1 = urlParams.get('i');
+const param2 = urlParams.get('param1');
 
 // Display the parameters on the page or use them as needed
-if (param1) {
-  document.addEventListener("DOMContentLoaded", () => loadMenu(param1));
-  //  document.write(`<p>Parameter 1: ${param1}</p>`);
-}
-else {
-  document.addEventListener("DOMContentLoaded", () => loadMenu());
-}
+// setTimeout(() => {
+  // document.addEventListener("DOMContentLoaded", () =>{ console.log("load menu");
+  window.onload =()=> loadMenu(param1 || param2);
+// }, 1);
+// if (param1) {
+//   document.addEventListener("DOMContentLoaded", () =>{ console.log("load menu");
+//    loadMenu(param1)});
+//   //  document.write(`<p>Parameter 1: ${param1}</p>`);
+// }
+// else {
+//   console.log("here");
+  
+//   document.addEventListener("DOMContentLoaded", () => loadMenu());
+// }
 
 
