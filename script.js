@@ -2,10 +2,24 @@ let menuData = []
 let cart = [];  // Cart array to hold items
 let selected = undefined;
 let scro = 0;
+const loadingElement = document.getElementById("loading");
+const nav  = document.getElementById("head")
+function showLoading() {
+    loadingElement.style.display = "block";
+    nav.style.display = "none"
+}
+
+function hideLoading() {
+    loadingElement.style.display = "none";
+    nav.style.display = "flex"
+}
 function loadMenu(resturanId) {  
+  showLoading(); // Show loading spinner
+
   let cleanedStr = resturanId.replace(/'/g, "");  // Removes all single quotes
 
   if (resturanId) {
+    
     const cldUrl = `https://pub-fbdbb25b0f934dd8b443b70f85c547a0.r2.dev/${cleanedStr}.json?v=${new Date().getTime()}`
     // Fetch the file from S3
     fetch(cldUrl)
@@ -150,7 +164,7 @@ function loadMenu(resturanId) {
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
-      });
+      }).finally (re => hideLoading());
 
   }
 
