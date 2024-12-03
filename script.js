@@ -160,7 +160,7 @@ function loadMenu(resturanId) {
         //  document.getElementById('file-content').innerText = data;
           
         }
-        
+        hideLoading()
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
