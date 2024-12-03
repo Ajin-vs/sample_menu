@@ -22,6 +22,8 @@ function loadMenu(resturanId) {
           logimg.src = data?.logo || '';
           if(data?.logo){
             logimg.style.display = 'block'
+            const titleLog = document.getElementById("titlogo");
+            titleLog.setAttribute("href",data.logo);
           }
           capt.innerHTML = data.resturant;
           menuData = data.menu;
