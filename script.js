@@ -3,7 +3,9 @@ let cart = [];  // Cart array to hold items
 let selected = undefined;
 let scro = 0;
 const loadingElement = document.getElementById("loading");
-const nav  = document.getElementById("head")
+const nav  = document.getElementById("head");
+let backgroundColor;
+let color;
 function showLoading() {
     loadingElement.style.display = "block";
     nav.style.display = "none"
@@ -100,6 +102,19 @@ function loadMenu(resturanId) {
           const cartBtn = document.createElement('p');
           cartBtn.classList.add('cart-p');
           cartBtn.innerHTML = `<button onclick="openCartModal()" class="view-cart-button" style="display:none;">View Cart</button>`;
+          if(data?.color && data?.backgroundColor){
+            backgroundColor = data.backgroundColor;
+            color = data.color;
+            nav.style.backgroundColor = data.backgroundColor
+            document.getElementById("capt").style.color = data.color
+            const buttons = document.querySelectorAll("button");
+            buttons.forEach(button => {
+                button.style.backgroundColor = data.backgroundColor;
+                button.style.color = data.color;
+            });
+            document.getElementById("cart-header").style.color = data.backgroundColor;
+            document.querySelector('.cart-content').style.border = `2px solid ${data.backgroundColor}`;
+          }
           menuSection.appendChild(cartBtn);
             // IntersectionObserver options to reduce flickering
         const observerOptions = {
@@ -199,6 +214,14 @@ function updateCart() {
     totalAmount += item.price * item.quantity;
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart-item");
+    const isBlackBackground = true; // Example condition
+
+    let buttonStyle = ""
+    if(backgroundColor && color){
+      buttonStyle = `background-color: ${backgroundColor}; color: ${color};`
+    }
+      
+
     cartItem.innerHTML = `
       <div>
       <span>${item.quantity} - </span>
@@ -207,8 +230,8 @@ function updateCart() {
       <div class="buttons-container">
        
         
-        <button onclick="changeQuantity('${item.name}', -1)">-</button>
-        <button onclick="changeQuantity('${item.name}', 1)">+</button>
+        <button onclick="changeQuantity('${item.name}', -1)" style ="${buttonStyle}">-</button>
+        <button onclick="changeQuantity('${item.name}', 1)"  style ="${buttonStyle}">+</button>
       </div>
     `;
     cartItems.appendChild(cartItem);
@@ -224,6 +247,11 @@ function updateCart() {
     <span>Your Feast</span>
     <span class="cart-info-right"> ₹${totalAmount.toFixed(2)}</span>
   `;
+  if(color && backgroundColor){
+    cartBtn.style.color = color
+    cartBtn.style.backgroundColor = backgroundColor
+  }
+  
   cartBtn.style.display = "block"
 }
 
